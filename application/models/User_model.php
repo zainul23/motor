@@ -11,6 +11,13 @@ class User_model extends CI_model
         return $this->db->get()->row_array();
     }
 
+    public function count_konsultasi()
+    {
+        $this->db->select('COUNT(*) as total_konsultasi');
+        $this->db->from('user');
+        return $this->db->get()->row_array();
+    }
+
     public function getId()
     {
         $this->db->select_max('id', 'id');

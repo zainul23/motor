@@ -12,12 +12,15 @@ class Motor_model extends CI_model
         return $this->db->get('seri')->result_array();
     }
 
-    // public function insert($parameter)
-    // {
-    //     if ($parameter == 1) {
-    //     } else {
-    //     }
-    // }
+    public function JoinMerekWithSeri()
+    {
+        $query = $this->db->query("
+            SELECT m.nama as merek, s.nama, m.id
+            FROM merek as m
+            INNER JOIN seri as s ON m.id = s.merek_id
+        ")->result_array();
+        return $query;
+    }
 
     public function getMotorId($id)
     {

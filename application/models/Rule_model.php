@@ -44,9 +44,27 @@ class Rule_model extends CI_model
         if ($kode_parent == NULL) {
             return 'Pilih Gejala';
         } else {
-            $data = $this->db->get_where('gejala', array('kode_gejala' => $kode_parent))->row_array();
-            return $data['kode_gejala'] . ' - ' . $data['gejala'];
+            $data = $this->db->query("
+            SELECT b.kode_gejala, b.gejala FROM(
+                SELECT g.kode_gejala as kode_gejala, g.gejala as gejala FROM gejala g 
+                UNION
+                SELECT k.kode_kerusakan as kode_gejala, k.kerusakan as gejala FROM kerusakan k
+            ) b WHERE b.kode_gejala = '$kode_parent'
+            ")->row_array();
+            return $data;
         }
+    }
+
+    public function UnionGejalaWithKerusakan()
+    {
+        $query = $this->db->query("
+            SELECT b.kode_gejala, b.gejala FROM(
+                SELECT g.kode_gejala as kode_gejala, g.gejala as gejala FROM gejala g 
+                UNION
+                SELECT k.kode_kerusakan as kode_gejala, k.kerusakan as gejala FROM kerusakan k
+            ) b
+            ")->result_array();
+        return $query;
     }
 
     public function getDataYa($kode_ya = NULL)
@@ -54,18 +72,30 @@ class Rule_model extends CI_model
         if ($kode_ya === NULL) {
             return 'Pilih Gejala';
         } else {
-            $data = $this->db->get_where('gejala', array('kode_gejala' => $kode_ya))->row_array();
-            return $data['kode_gejala'] . ' - ' . $data['gejala'];
+            $data = $this->db->query("
+            SELECT b.kode_gejala, b.gejala FROM(
+                SELECT g.kode_gejala as kode_gejala, g.gejala as gejala FROM gejala g 
+                UNION
+                SELECT k.kode_kerusakan as kode_gejala, k.kerusakan as gejala FROM kerusakan k
+            ) b WHERE b.kode_gejala = '$kode_ya'
+            ")->row_array();
+            return $data;
         }
     }
 
-    public function getDataTidak($kode_tidak)
+    public function getDataTidak($kode_tidak = NULL)
     {
-        if ($kode_tidak == NULL) {
+        if ($kode_tidak === NULL) {
             return 'Pilih Gejala';
         } else {
-            $data = $this->db->get_where('gejala', array('kode_gejala' => $kode_tidak))->row_array();
-            return $data['kode_gejala'] . ' - ' . $data['gejala'];
+            $data = $this->db->query("
+            SELECT b.kode_gejala, b.gejala FROM(
+                SELECT g.kode_gejala as kode_gejala, g.gejala as gejala FROM gejala g 
+                UNION
+                SELECT k.kode_kerusakan as kode_gejala, k.kerusakan as gejala FROM kerusakan k
+            ) b WHERE b.kode_gejala = '$kode_tidak'
+            ")->row_array();
+            return $data;
         }
     }
 
@@ -121,6 +151,8 @@ class Rule_model extends CI_model
             'ya' => $gejala_ya,
             'tidak' => $gejala_tidak
         ];
+        // dump($data);
+        // exit;
 
         $this->db->update('rule', $data, ['id' => $id]);
     }
