@@ -5,13 +5,18 @@ class Konsultasi extends CI_Controller
 {
     public function index()
     {
-        $data['title'] = 'Konsultasi';
-        $data['merek'] = $this->motor->getMerek();
-        $data['seri'] = $this->motor->getSeri();
-        // var_dump(base_url());
-        $this->load->view('includes/header');
-        $this->load->view('konsultasi/index', $data);
-        $this->load->view('includes/footer');
+        if (!empty($this->session->userdata['logged_in'])) {
+            $data['title'] = 'Konsultasi';
+            $data['merek'] = $this->motor->getMerek();
+            $data['seri'] = $this->motor->getSeri();
+            // var_dump(base_url());
+            $this->load->view('includes/header');
+            $this->load->view('konsultasi/index', $data);
+            $this->load->view('includes/footer');
+        } else {
+            redirect('home/login');
+        }
+        
     }
 
     public function add()
@@ -24,16 +29,20 @@ class Konsultasi extends CI_Controller
 
     public function pertanyaan($kode)
     {
-        $this->db->select('*');
-        $this->db->from('rule');
-        $this->db->join('gejala', 'gejala.id_gejala = rule.gejala_id');
-        $this->db->where('kode_gejala', $kode);
-
-        $data['pertanyaan'] = $this->db->get()->row_array();
-        $this->load->view('includes/header');
-        // $this->load->view('konsultasi/index', $data);
-        $this->load->view('konsultasi/pertanyaan', $data);
-        $this->load->view('includes/footer');
+        if (!empty($this->session->userdata['logged_in'])) {
+            $this->db->select('*');
+            $this->db->from('rule');
+            $this->db->join('gejala', 'gejala.id_gejala = rule.gejala_id');
+            $this->db->where('kode_gejala', $kode);
+    
+            $data['pertanyaan'] = $this->db->get()->row_array();
+            $this->load->view('includes/header');
+            // $this->load->view('konsultasi/index', $data);
+            $this->load->view('konsultasi/pertanyaan', $data);
+            $this->load->view('includes/footer');
+        } else {
+            redirect('home/login');
+        }
     }
 
     public function olah()

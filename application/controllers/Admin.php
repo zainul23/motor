@@ -8,6 +8,10 @@ class Admin extends CI_Controller
         if ($this->session->userdata('username')) {
             $data['title'] = 'Sistem Pakar';
             $data['user'] = $this->session->userdata('username');
+            $data['total_user'] = $this->member->count_user();
+            $data['total_konsultasi'] = $this->user->count_konsultasi();
+            // dump($data);
+            // exit;
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar');
             $this->load->view('templates/sidebar');

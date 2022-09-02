@@ -8,9 +8,7 @@ class Motor extends CI_Controller
         $data['title'] = 'Data Motor';
         $data['merek'] = $this->motor->getMerek();
         $data['seri'] = $this->motor->getSeri();
-        // $data= array('asas','dss');
-        // var_dump($data);
-        // exit;
+        $data['seri_list'] = $this->motor->JoinMerekWithSeri();
         
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
@@ -19,14 +17,44 @@ class Motor extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function add_seri()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('merek_id', 'Merek', 'required');
+        $this->form_validation->set_rules('seri', 'Seri', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            // $this->session->set_flashdata('error', 'field Merek tidak boleh kosong');
+            $data['title'] = 'Add Seri';
+            $data['merek'] = $this->motor->getMerek();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar');
+            $this->load->view('templates/sidebar');
+            $this->load->view('motor/form-seri');
+            $this->load->view('templates/footer');  
+        } else {
+            $this->seri->insert();
+            $this->session->set_flashdata('success-seri', 'Data Seri Berhasil Disimpan');
+            redirect('motor');
+        }
+    }
+
     public function insert()
     {
-        $this->motor->insert();
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show col-sm-2"
-        role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>Data berhasil disimpan!</div>');
-        redirect('motor');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('merek', 'Merek', 'required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->session->set_flashdata('error', 'field Merek tidak boleh kosong');
+            redirect('motor');
+        } else {
+            $this->motor->insert();
+            $this->session->set_flashdata('success', 'data Merek berhasil disimpan !!!');
+            redirect('motor');
+        }
+
     }
 
     public function ubah($id)
@@ -43,15 +71,60 @@ class Motor extends CI_Controller
 
     public function update($id)
     {
-        $this->motor->update($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success bg-success text-white border-0 fade show col-sm-12"
-        role="alert"> Data berhasil diubah!</div>');
-        redirect('motor');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nama', 'Merek', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->session->set_flashdata('error', 'field Merek tidak boleh kosong');
+            redirect('motor/ubah/'.$id);
+        } else {
+            $this->motor->update($id);
+            $this->session->set_flashdata('success', 'data Merek berhasil diubah !!!');
+            redirect('motor');
+        }
     }
 
     public function delete($id)
     {
         $this->motor->delete($id);
+        redirect('motor');
+    }
+
+    public function ubah_seri($id)
+    {
+        $data['title'] = 'Ubah Data Seri';
+        $data['merek'] = $this->motor->getMerek();
+        $data['seri'] = $this->seri->getSeriId($id);
+        // dump($data);
+        // exit;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar');
+        $this->load->view('motor/ubah-seri');
+        $this->load->view('templates/footer');
+    }
+
+    public function update_seri($id)
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('merek_id', 'Merek', 'required');
+        $this->form_validation->set_rules('seri', 'Seri', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->session->set_flashdata('error', 'field Merek tidak boleh kosong');
+            redirect('motor/ubah_seri/'.$id);
+        } else {
+            $this->seri->update($id);
+            $this->session->set_flashdata('success', 'data Merek berhasil diubah !!!');
+            redirect('motor');
+        }
+    }
+
+    public function delete_seri($id)
+    {
+        $this->seri->delete($id);
         redirect('motor');
     }
 }

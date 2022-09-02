@@ -44,11 +44,12 @@ class Rule extends CI_Controller
         if ($this->session->userdata('username')) {
             $data['rule'] = $this->rule->getAllRuleId($id);
             $data['title'] = 'Ubah Data Rule';
-            $data['gejala'] = $this->gejala->getGejala();
+            $data['gejala'] = $this->rule->UnionGejalaWithKerusakan();
+            $data['gejala1'] = $this->gejala->getGejala();
             $data['kerusakan'] = $this->kerusakan->getKerusakan();
 
             $check = $data['rule'] = $this->rule->getAllRuleId($id);
-            // dump($check);
+            // dump($data['gejala1']);
             // exit;
             $kode_parent = $check['parent'];
             $kode_ya = $check['ya'];
@@ -58,6 +59,7 @@ class Rule extends CI_Controller
             $data['ya'] = $this->rule->getDataYa($kode_ya);
             $data['tidak'] = $this->rule->getDataTidak($kode_tidak);
             // dump($kode_ya);
+            // dump($data['tidak']);
             // dump($data['ya']);
             // exit;
             // var_dump($check);
