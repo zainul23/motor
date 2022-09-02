@@ -19,13 +19,21 @@
                       <?= $this->session->flashdata('success');?>
                     </div>
                 <?php endif; ?>
-                <form class="mt-4" action="<?= base_url('motor/update/') . $motor['id'] ?>" method="POST">
-                    <h5 class="card-title">Nama</h5>
+                <form class="mt-4" action="<?= base_url('motor/update_seri/') . $seri['id'] ?>" method="POST">
+                    <h5 class="card-title">Merek</h5>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="nama" id="nama" value="<?= $motor['nama']; ?>">
+                        <select class="form-control" name="merek_id">
+                            <option value="" disabled selected>Pilih Sitem Pengapian</option>
+                            <?php foreach ($merek as $m) : ?>
+                                <option <?= $m['id'] === $seri['merek_id'] ? 'selected' :''; ?> value="<?= $m['id'] ?>"><?= $m['nama'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <h5 class="card-title">Seri</h5>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="seri" id="seri" value="<?= $seri['nama'] ?>">
                     </div>
                     <div class="float-right">
-                        <a href="<?= base_url('motor/') ?>" class="btn btn-secondary">Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button>
                     </div>
                 </form>

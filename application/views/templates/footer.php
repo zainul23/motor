@@ -2,7 +2,7 @@
 <!-- footer -->
 <!-- ============================================================== -->
 <footer class="footer text-center text-muted">
-    All Rights Reserved by Zainul. Designed and Developed by <a href="https://keraton.co.id">Zainul</a>.
+    All Rights Reserved by Alfian.
 </footer>
 <!-- ============================================================== -->
 <!-- End footer -->

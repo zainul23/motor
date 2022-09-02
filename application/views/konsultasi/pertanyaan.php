@@ -43,8 +43,8 @@
                                     <label class="text-dark text-center" for="uname"><?= $pertanyaan['gejala'] ?></label>
                                     <table class="table table-borderless">
                                         <tr class="text-center">
-                                            <td><input id="jawab" name="jawab" type="radio" value="<?= $pertanyaan['ya'] ?>"> Benar</td>
-                                            <td><input id="jawab" name="jawab" type="radio" value="<?= $pertanyaan['tidak'] ?>"> Salah</td>
+                                            <td><input id="jawab" name="jawab" type="radio" value="<?= $pertanyaan['ya'] ?>" required> Benar</td>
+                                            <td><input id="jawab" name="jawab" type="radio" value="<?= $pertanyaan['tidak'] ?>" required> Salah</td>
                                         </tr>
                                     </table>
                                 </div>

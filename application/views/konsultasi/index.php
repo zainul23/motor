@@ -2,26 +2,26 @@
         <div class="col-sm-5 bg-white">
             <div class="p-3">
                 <h2 class="mt-3 text-center">Selamat Datang!</h2>
-                <p class="text-center"><i>Sistem Pakar Diagnosa Kerusakan Motor Injeksi Matic</i></p>
+                <p class="text-center"><i>Sistem Pakar Diagnosa Kerusakan Motor</i></p>
                 <form class="mt-4" method="POST" action="<?= base_url('konsultasi/add') ?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="text-dark" for="uname">Nama Lengkap</label>
-                                <input class="form-control" id="nama" name="nama" type="text">
+                                <input class="form-control" id="nama" name="nama" type="text" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="text-dark" for="pwd">Email</label>
-                                <input class="form-control" id="email" name="email" type="text">
+                                <input class="form-control" id="email" name="email" type="text" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="text-dark" for="pwd">Merk Motor</label>
-                                <select class="form-control" name="merek">
-                                    <option value="">Pilih Merk</option>
+                                <label class="text-dark" for="pwd">Sistem Pengapian</label>
+                                <select class="form-control" name="merek" required>
+                                    <option value="" selected disabled>Pilih Sitem Pengapian</option>
                                     <?php foreach ($merek as $m) : ?>
                                         <option value="<?= $m['nama'] ?>"><?= $m['nama'] ?></option>
                                     <?php endforeach; ?>
@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label class="text-dark" for="pwd">Seri Motor</label>
                                 <select class="form-control" name="seri">
-                                    <option value="">Pilih Seri</option>
+                                    <option value="" selected disabled>Pilih Seri</option>
                                     <?php foreach ($seri as $s) : ?>
                                         <option value="<?= $s['nama'] ?>"><?= $s['nama'] ?></option>
                                     <?php endforeach; ?>

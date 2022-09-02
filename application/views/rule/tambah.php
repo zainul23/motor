@@ -12,7 +12,7 @@
                 <form class="mt-4" action="<?= base_url('rule/insert') ?>" method="POST">
                     <h5 class="card-title">Gejala</h5>
                     <div class="form-group mb-4">
-                        <select class="form-control col-sm-4" name="gejala_id">
+                        <select class="form-control col-sm-4" name="gejala_id" required>
                             <option value="">Pilih Gejala</option>
                             <?php foreach ($gejala as $g) : ?>
                                 <option value="<?= $g['id_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
@@ -21,7 +21,7 @@
                     </div>
                     <h5 class="card-title">Gejala Sebelumnya</h5>
                     <div class="form-group mb-4">
-                        <select class="form-control col-sm-4" name="gejala_parent">
+                        <select class="form-control col-sm-4" name="gejala_parent" required>
                             <option value="">Pilih Gejala</option>
                             <?php foreach ($gejala as $g) : ?>
                                 <option value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
@@ -30,7 +30,7 @@
                     </div>
                     <h5 class="card-title">Gejala / Kerusakan Ya</h5>
                     <div class="form-group mb-4">
-                        <select class="form-control col-sm-4" name="gejala_ya">
+                        <select class="form-control col-sm-4" name="gejala_ya" required>
                             <option value="">Pilih Gejala / Kerusakan</option>
                             <option value="">#Gejala</option>
                             <?php foreach ($gejala as $g) : ?>
