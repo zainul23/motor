@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2022 at 12:29 PM
+-- Generation Time: Sep 02, 2022 at 10:08 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.14
 
@@ -60,7 +60,6 @@ INSERT INTO `gejala` (`id_gejala`, `kode_gejala`, `gejala`) VALUES
 (1, 'G01', 'Saat motor di starter atau di engkol mesin tidak hidup1'),
 (2, 'G02', 'Mesin motor tidak hidup padahal bensin masih penuh'),
 (3, 'G03', 'Saat motor di engkol terasa ringan atau los'),
-(4, 'G04', 'Kabel coil atau busi tidak mengeluarkan arus listrik'),
 (5, 'G05', 'Seluruh kelistrikan mati'),
 (6, 'G06', 'Saat motor di starter mesin tidak hidup tapi saat di engkol mesin hidup'),
 (7, 'G07', 'Saat motor di starter tidak terdengar suara dinamo atau suara dinamo lemah'),
@@ -139,7 +138,6 @@ CREATE TABLE `merek` (
 --
 
 INSERT INTO `merek` (`id`, `nama`) VALUES
-(1, 'Yamaha'),
 (2, 'Honda'),
 (3, 'Kawasaki');
 
@@ -231,9 +229,9 @@ CREATE TABLE `rule` (
 --
 
 INSERT INTO `rule` (`id`, `gejala_id`, `parent`, `ya`, `tidak`) VALUES
-(75, 1, NULL, 'G02', 'G06'),
+(75, 1, 'G01', 'G02', 'G06'),
 (76, 2, 'G01', 'G04', 'G03'),
-(77, 3, 'G01', 'K02', 'G05'),
+(77, 0, 'G19', 'K02', '1'),
 (78, 4, 'G02', 'K03', 'K01'),
 (79, 5, 'G01', 'K04', 'G06'),
 (80, 6, 'G06', 'G07', 'G09'),
@@ -249,11 +247,13 @@ INSERT INTO `rule` (`id`, `gejala_id`, `parent`, `ya`, `tidak`) VALUES
 (90, 16, 'G16', 'G17', 'G18'),
 (91, 17, 'G16', 'K14', 'K13'),
 (92, 18, 'K14', 'G19', 'G20'),
-(93, 19, 'G18', 'K16', 'K15'),
+(93, 0, 'G02', 'K15', 'A P'),
 (94, 20, 'G20', 'G21', 'G22'),
 (95, 21, 'G20', 'G22', 'K17'),
 (96, 23, 'G21', 'G22', 'G23'),
-(97, 22, 'G23', 'K20', 'K19');
+(97, 22, 'K21', 'K20', 'G11'),
+(0, 1, 'G01', 'G01', 'G01'),
+(0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -272,8 +272,9 @@ CREATE TABLE `seri` (
 --
 
 INSERT INTO `seri` (`id`, `nama`, `merek_id`) VALUES
-(1, 'Nmax', 1),
-(2, 'Mio', 1);
+(1, 'Nmax', 3),
+(2, 'Mio', 3),
+(3, 'Scoopy', 2);
 
 -- --------------------------------------------------------
 
@@ -303,7 +304,31 @@ INSERT INTO `user` (`id`, `nama`, `email`, `merek`, `seri`, `kerusakan_kode`) VA
 (9, 'M Zainul Anwar', 'super.admin@keraton.com', 'Yamaha', 'Nmax', 'K03'),
 (10, 'M Zainul Anwar', 'super.admin@keraton.com', 'Yamaha', 'Nmax', 'K03'),
 (11, 'M Zainul Anwar', 'super.admin@keraton.com', 'Kawasaki', 'Nmax', 'K03'),
-(12, 'M Zainul Anwar', 'asxasasas@gmail.com', 'Honda', 'Nmax', 'K01');
+(12, 'M Zainul Anwar', 'asxasasas@gmail.com', 'Honda', 'Nmax', 'K01'),
+(14, 'M Zainul Anwar', 'super.admin@keraton.com', 'Honda', 'Nmax', ''),
+(15, 'M Zainul Anwar', 'asxasasas@gmail.com', 'Honda', 'Nmax', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_login`
+--
+
+CREATE TABLE `user_login` (
+  `id` int(11) NOT NULL,
+  `uname` varchar(55) NOT NULL,
+  `nama` varchar(55) NOT NULL,
+  `password` text NOT NULL,
+  `email` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_login`
+--
+
+INSERT INTO `user_login` (`id`, `uname`, `nama`, `password`, `email`) VALUES
+(2, 'mexsds', 'SDDDS', '$2y$10$afbmJCA.R4nj1G4AMtXQiuCnqRVsukz4qIAlWEaHA4szm40DH3wNm', 'mexd@gmail.com'),
+(3, 'admindev', 'aaaa', '$2y$10$8YlHVD8fzHvAnd5LzVNeq.CyN9ste6Ls6uASaBdSvJf/LWBYAVVD2', 'aaa@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -340,12 +365,6 @@ ALTER TABLE `relasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rule`
---
-ALTER TABLE `rule`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `seri`
 --
 ALTER TABLE `seri`
@@ -355,6 +374,12 @@ ALTER TABLE `seri`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_login`
+--
+ALTER TABLE `user_login`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -383,7 +408,7 @@ ALTER TABLE `kerusakan`
 -- AUTO_INCREMENT for table `merek`
 --
 ALTER TABLE `merek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `relasi`
@@ -392,22 +417,22 @@ ALTER TABLE `relasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
--- AUTO_INCREMENT for table `rule`
---
-ALTER TABLE `rule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
-
---
 -- AUTO_INCREMENT for table `seri`
 --
 ALTER TABLE `seri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `user_login`
+--
+ALTER TABLE `user_login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
