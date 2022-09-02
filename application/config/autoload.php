@@ -138,5 +138,7 @@ $autoload['model'] = array(
     'Kerusakan_model' => 'kerusakan',
     'Rule_model' => 'rule',
     'Motor_model' => 'motor',
-    'User_model' => 'user'
+    'User_model' => 'user',
+    'Member_model' => 'member',
+    'Seri_model' => 'seri'
 );
