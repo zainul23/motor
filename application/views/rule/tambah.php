@@ -21,10 +21,12 @@
                     </div>
                     <h5 class="card-title">Gejala Sebelumnya</h5>
                     <div class="form-group mb-4">
-                        <select class="form-control col-sm-4" name="gejala_parent" required>
-                            <option value="">Pilih Gejala</option>
+                        <select class="form-control col-sm-4" name="gejala_parent">
+                            <!-- <option value="">Pilih Gejala</option> -->
+                            <!-- <option hidden selected value="<?= $rule['parent'] ?>"><?= $rule['kode_gejala'] . ' - ' . $rule['gejala'] ?></option> -->
+                            <!-- <input type="hidden" value="<?= $rule['parent'] ?>"> -->
                             <?php foreach ($gejala as $g) : ?>
-                                <option value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
+                                <option  <?= $g['kode_gejala'] === $rule['parent'] ? 'selected' :''; ?> value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

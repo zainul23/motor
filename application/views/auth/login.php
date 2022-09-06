@@ -36,7 +36,7 @@
             <div class="col-sm-5 auth-box row bg-white">
                 <div class="p-3">
                     <h2 class="mt-3 text-center">Login Admin</h2>
-                    <p class="text-center"><i>Sistem Pakar Diagnosa Kerusakan Motor</i></p>
+                    <p class="text-center"><i>Sistem Diagnosa Kerusakan Motor</i></p>
                     <?php echo $this->session->flashdata('message'); ?>
 
                     <form class="mt-4" method="POST" action="<?= base_url('auth/login') ?>">
@@ -56,7 +56,6 @@
                             <div class="col-lg-12 text-center mb-3">
                                 <button type="submit" class="btn btn-block btn-dark">Login</button>
                                 <hr>
-                                <!--Distributed by <a href="https://blogbugabagi.blogspot.com" target="_blank" rel="noopener noreferrer">BlogBugaBagi</a>-->
                             </div>
                         </div>
                     </form>

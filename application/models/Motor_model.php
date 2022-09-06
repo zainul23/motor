@@ -15,7 +15,7 @@ class Motor_model extends CI_model
     public function JoinMerekWithSeri()
     {
         $query = $this->db->query("
-            SELECT m.nama as merek, s.nama, m.id
+            SELECT m.nama as merek, s.nama, s.id
             FROM merek as m
             INNER JOIN seri as s ON m.id = s.merek_id
         ")->result_array();

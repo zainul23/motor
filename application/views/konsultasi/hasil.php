@@ -36,7 +36,7 @@
             <div class="col-sm-10 bg-white" style="margin-top:90px; margin-bottom: 90px;">
                 <div class="p-3">
                     <h2 class="mt-3 text-center">Hasil</h2>
-                    <p class="text-center"><i>Hasil diagnosa kerusakan motor injeksi matic dengan metode forward chaining</i></p>
+                    <p class="text-center"><i>Hasil diagnosa kerusakan motor</i></p>
                     <div class="row">
                         <table border="1" class="table table-bordered">
                             <tr>

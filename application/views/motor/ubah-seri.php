@@ -20,7 +20,7 @@
                     </div>
                 <?php endif; ?>
                 <form class="mt-4" action="<?= base_url('motor/update_seri/') . $seri['id'] ?>" method="POST">
-                    <h5 class="card-title">Merek</h5>
+                    <h5 class="card-title">Sistem Pengapian</h5>
                     <div class="form-group">
                         <select class="form-control" name="merek_id">
                             <option value="" disabled selected>Pilih Sitem Pengapian</option>

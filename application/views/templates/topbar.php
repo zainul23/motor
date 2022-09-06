@@ -59,7 +59,7 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left m-auto">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium">Sistem Pakar Diagnosa Kerusakan Motor</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium">Sistem Diagnosa Kerusakan Motor</h3>
                     </ul>
                 </div>
             </nav>

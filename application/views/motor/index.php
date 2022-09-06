@@ -30,7 +30,7 @@
                     <thead class="bg-success text-white">
                         <tr>
                             <th class="text-center" width="1%">No</th>
-                            <th class="text-center" width="10%">Merek</th>
+                            <th class="text-center" width="10%">Sistem Pengapian</th>
                             <th class="text-center" width="5%">Aksi</th>
                         </tr>
                     </thead>
@@ -57,7 +57,6 @@
                     <div class="col-5 align-self-center">
                         <div class="customize-input float-right">
                             <a href="<?= base_url('motor/add_seri') ?>" class="btn btn-primary"><span><i class="fa fa-plus"></i> Tambah</span></a>
-                            
                         </div>
                     </div>
                 </div>
@@ -65,7 +64,7 @@
                     <thead class="bg-success text-white">
                         <tr>
                             <th class="text-center" width="1%">No</th>
-                            <th class="text-center" width="10%">Merek</th>
+                            <th class="text-center" width="10%">Sistem Pengapian</th>
                             <th class="text-center" width="10%">Seri</th>
                             <th class="text-center" width="5%">Aksi</th>
                         </tr>

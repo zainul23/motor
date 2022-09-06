@@ -2,7 +2,7 @@
         <div class="col-sm-5 bg-white">
             <div class="p-3">
                 <h2 class="mt-3 text-center">Selamat Datang!</h2>
-                <p class="text-center"><i>Sistem Pakar Diagnosa Kerusakan Motor</i></p>
+                <p class="text-center"><i>Sistem Diagnosa Kerusakan Motor</i></p>
                 <form class="mt-4" method="POST" action="<?= base_url('konsultasi/add') ?>">
                     <div class="row">
                         <div class="col-lg-12">
@@ -42,7 +42,6 @@
                         <div class="col-lg-12 text-center">
                             <button type="submit" class="btn btn-block btn-dark">Mulai Konsultasi</button>
                             <hr>
-                            <!-- Distributed by <a href="https://blogbugabagi.blogspot.com" target="_blank" rel="noopener noreferrer">BlogBugaBagi</a> -->
                         </div>
                     </div>
                 </form>

@@ -21,30 +21,28 @@
                     </div>
                     <h5 class="card-title">Gejala Sebelumnya</h5>
                     <div class="form-group mb-4">
-                        <select class="form-control col-sm-4" name="gejala_parent">
-                            <!-- <option value="">Pilih Gejala</option> -->
-                            <!-- <option hidden selected value="<?= $rule['parent'] ?>"><?= $rule['kode_gejala'] . ' - ' . $rule['gejala'] ?></option> -->
-                            <!-- <input type="hidden" value="<?= $rule['parent'] ?>"> -->
+                        <select class="form-control col-sm-4" name="gejala_parent" required>
+                            <option value="">Pilih Gejala</option>
                             <?php foreach ($gejala as $g) : ?>
-                                <option  <?= $g['kode_gejala'] === $rule['parent'] ? 'selected' :''; ?> value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
+                                <option value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <h5 class="card-title">Gejala Ya</h5>
+                    <h5 class="card-title">Gejala / Kerusakan Ya</h5>
                     <div class="form-group mb-4">
-                        <select class="form-control col-sm-4" name="gejala_ya">
-                            <option value="" disabled>Pilih Gejala</option>
+                        <select class="form-control col-sm-4" name="gejala_ya" required>
+                            <option value="">Pilih Gejala / Kerusakan</option>
                             <?php foreach ($gejala as $g) : ?>
-                                <option <?= $g['kode_gejala'] === $ya['kode_gejala'] ? 'selected' :''; ?> value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
+                                <option value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <h5 class="card-title">Gejala Tidak</h5>
+                    <h5 class="card-title">Gejala / Kerusakan Tidak</h5>
                     <div class="form-group mb-4">
                         <select class="form-control col-sm-4" name="gejala_tidak">
-                            <option value="" disabled>Pilih Gejala</option>
+                            <option value="">Pilih Gejala / Kerusakan</option>
                             <?php foreach ($gejala as $g) : ?>
-                                <option <?= $g['kode_gejala'] === $tidak['kode_gejala'] ? 'selected' :''; ?> value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
+                                <option value="<?= $g['kode_gejala'] ?>"><?= $g['kode_gejala'] . ' - ' . $g['gejala'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

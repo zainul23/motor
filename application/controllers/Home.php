@@ -17,7 +17,7 @@ class Home extends CI_Controller
         $this->load->view('includes/footer');   
     }
 
-    public function post_register()
+    public function register()
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -35,7 +35,7 @@ class Home extends CI_Controller
         } else {
             $this->member->insert();
             $this->session->set_flashdata('success', 'Success created account');
-            redirect('home/post_register');
+            redirect('home/login');
         }
         
     }
@@ -76,12 +76,14 @@ class Home extends CI_Controller
         } else {
             $email = $this->input->post('email');
             $password = $this->input->post('password', TRUE);
+            // $where['user_username'] = $this->input->post('username', TRUE);
 
+			// $user = $this->user->get_by($where);
             $user = $this->member->getEmail1($email);
-            // dump($user);
+            // dump(count($user));
             // exit;
             //check 
-            if (count($user) == 0) {
+            if ($user == NULL) {
                 // empty result
                 $this->session->set_flashdata('error', 'Email Tidak Terdaftar');
                 $this->load->view('includes/header');

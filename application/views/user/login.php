@@ -2,8 +2,13 @@
     <div class="col-sm-5 bg-white">
         <div class="p-3">
             <h2 class="mt-3 text-center">Selamat Datang!</h2>
-            <p class="text-center"><i>Sistem Pakar Diagnosa Kerusakan Motor</i></p>
+            <p class="text-center"><i>Sistem Diagnosa Kerusakan Motor</i></p>
             <!-- <?php dump($this->session) ?> -->
+                <?php if($this->session->has_userdata('success')): ?>
+                        <div class="alert alert-mini alert-success mb-30">
+                        <?= $this->session->userdata('success')?>
+                </div>
+                <?php endif; ?>
                 <?php if($this->session->has_userdata('error')): ?>
                     <div class="alert alert-mini alert-danger mb-30">
                         <?= $this->session->userdata('error')?>
@@ -15,18 +20,21 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="text-dark" for="email">Email</label>
-                            <input class="form-control" id="email" name="email" type="email" value="" autocomplete="off">
+                            <input type="text" name="email" required oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')" class=" form-control" placeholder="Email">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="text-dark" for="password">Password</label>
-                            <input class="form-control" id="password" name="password" type="password" autocomplete="off">
+                            <input type="password" name="password" required oninvalid="this.setCustomValidity('Password tidak boleh kosong')" oninput="setCustomValidity('')" class=" form-control" placeholder="Password">
                         </div>
                     </div>
                     <div class="col-lg-12 text-center">
                         <button type="submit" class="btn btn-block btn-dark">Login</button>
-                        <!-- Distributed by <a href="https://blogbugabagi.blogspot.com" target="_blank" rel="noopener noreferrer">BlogBugaBagi</a> -->
+                        <hr>
+                        <a href="<?= site_url('home/register');?>">
+                                <i class=""></i> &nbsp; Don't have an account yet?
+                        </a>
                     </div>
                 </div>
             </form>

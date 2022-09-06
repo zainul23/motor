@@ -113,7 +113,7 @@ class Motor extends CI_Controller
         $this->form_validation->set_rules('seri', 'Seri', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->session->set_flashdata('error', 'field Merek tidak boleh kosong');
+            $this->session->set_flashdata('error', 'field Merek atau Seri tidak boleh kosong');
             redirect('motor/ubah_seri/'.$id);
         } else {
             $this->seri->update($id);
