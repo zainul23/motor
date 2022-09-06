@@ -1,5 +1,5 @@
 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative mt-4" style="background:url(<?= base_url() ?>files/assets/images/big/auth-bg.jpg) no-repeat center center;">
-    <div class="col-sm-5 bg-white">
+    <div class="col-sm-5 bg-white mt-3">
         <div class="p-3">
             <h2 class="mt-3 text-center">Selamat Datang!</h2>
             <p class="text-center"><i>Sistem Diagnosa Kerusakan Motor</i></p>

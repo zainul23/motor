@@ -32,6 +32,9 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('') ?>">Home</a></li>
+                        <?php if(empty($this->session->userdata['logged_in'])): ?>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url('home/register') ?>">register</a></li>
+                        <?php endif; ?>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('konsultasi') ?>">Konsultasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('home/about') ?>">About</a></li>
                         <?php if(!empty($this->session->userdata['logged_in'])): ?>
